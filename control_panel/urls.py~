@@ -7,7 +7,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'pages.views.home', name='home'),
-    url(r'^home/(?P<direct>([-,.\w]*/)*)$','pages.views.listing'),
+    url(r'^log/(?P<temp>([-,.\w]*/)*)$','pages.views.listing'),
 
     # url(r'^control_panel/', include('control_panel.foo.urls')),
 
