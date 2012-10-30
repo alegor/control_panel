@@ -18,7 +18,9 @@ def authors(request):
     d = {'authors':Author.objects.all()}
     return render(request, 'authors.html', d)	
 
-
+def author(request, sub):	
+    d = {'author':Author.objects.get(id=sub)}
+    return render(request, 'author.html', d)	
 
 
 
