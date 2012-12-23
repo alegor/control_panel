@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Пример для статьи «Рисуем диаграмму с помощью Google Charts»</title>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+// Закружаем необходимый пакет для работы с диаграммами:
+google.load('visualization', '1.0', {'packages':['corechart']});
+// Устанавливаем функцию, которая будет описывать диаграмму. В нашем случае это drawChart:
+google.setOnLoadCallback(drawChart);
+ 
+// Описываем саму функцию:
+function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Answer');
+    data.addColumn('number', 'Result');
+    vr_data = {{vr_data}}
+    h_labels = "{{vr_labels}}".toString().replace(/[\[\]]/g, '').replace(/&quot;/g, '').split(', ');
+ 
+    // Задаем части диаграммы и их значения:
+    data.addRows([
+        [h_labels[0] , vr_data[0]],
+        [h_labels[1], vr_data[1]],
+        [h_labels[2], vr_data[2]],
+        [h_labels[3], vr_data[3]],
+    ]);
+ 
+    // Задаем заголовок, ширину и высоту диаграммы:
+    var options = {
+        'title':'Профессии людей, работающих с сайтами',
+        'width':500,
+        'height':400
+    };
+ 
+    // Рисуем круговую диаграмму:
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</script>
+</head>
+<body>
+<div id="chart_div" style="margin: 30px auto; width: 500px;"></div>
+<a href="/polls/1/">Vote again?</a>
+</body>
+</html>
